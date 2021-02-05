@@ -1,0 +1,45 @@
+---
+title: Home
+---
+<main role="main" class="container">
+    <div class="row">
+        <div class="col-md-8 blog-main">
+            <h2 class="pb-4 mb-5 font-italic border-bottom latest">
+                Vinctus Blog Latest Posts
+            </h2>
+
+            <ul class="post-list">
+                {% for post in site.posts %}
+                    <li>
+                        <header class="post-header">
+                            <p class="post-title"><a href="{{ post.url }}">{{ post.title }}</a></p>
+                            <p class="post-meta">
+                                {{ post.date | date_to_string }}
+                                {% assign author = site.authors | where: 'short_name', post.author | first %}
+                                {% if author %}
+                                    - <a href="{{ author.url }}">{{ author.name }}</a>
+                                {% else %}
+                                    - {{ post.author }}
+                                {% endif %}
+                            </p>
+                        </header>
+
+                        {{ post.excerpt }}
+                    </li>
+                {% endfor %}
+            </ul>
+
+            {% if paginator.total_pages > 1 %}
+            <div class="pagination">
+                {% if paginator.next_page %}
+                <a class="previous" href="{{ paginator.next_page_path | relative_url }}">&laquo; Older</a>
+                {% endif %}
+
+                {% if paginator.previous_page %}
+                <a class="next" href="{{ paginator.previous_page_path | relative_url }}">Newer &raquo;</a>
+                {% endif %}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</main>

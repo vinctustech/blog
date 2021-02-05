@@ -1,0 +1,35 @@
+author: Vinctus Technologies Inc.
+
+collections:
+  authors:
+    output: true
+
+defaults:
+  - scope:
+      path: ""
+      type: authors
+    values:
+      layout: author
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+  - scope:
+      path: ""
+    values:
+      layout: default
+
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+  - jekyll-paginate
+  - jemoji
+
+excerpt_separator: "<!-- more -->"
+
+permalink: /:year-:month-:day-:title/
+
+paginate_path: /posts/:num/
+paginate: 3
